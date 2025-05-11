@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="GHWarehouseApp.Views.ReturnsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:GHWarehouse.Behaviors"
+    BackgroundColor="#F5F5F5"
+    Title="İade Yönetimi"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+        <StackLayout Grid.Row="0" Padding="20" BackgroundColor="Transparent">
+            <Label Text="İade Yönetimi" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   TextColor="#333"/>
+            <Label Text="İadeleri etkin şekilde yönet ve takip et" 
+                   FontSize="16" 
+                   HorizontalOptions="Center"
+                   TextColor="#666"/>
+        </StackLayout>
+
+        <ScrollView Grid.Row="1" Orientation="Horizontal" Padding="10">
+            <HorizontalStackLayout Spacing="15">
+                <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="15" WidthRequest="140">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="📦" FontSize="30" HorizontalOptions="Center"/>
+                        <Label Text="Toplam İadeler" FontSize="12" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="25" FontSize="16" HorizontalOptions="Center" TextColor="#000"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="15" WidthRequest="140">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="⏳" FontSize="30" HorizontalOptions="Center"/>
+                        <Label Text="Bekleyen" FontSize="12" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="8" FontSize="16" HorizontalOptions="Center" TextColor="#000"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="15" WidthRequest="140">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="🔍" FontSize="30" HorizontalOptions="Center"/>
+                        <Label Text="İnceleniyor" FontSize="12" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="5" FontSize="16" HorizontalOptions="Center" TextColor="#000"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="15" WidthRequest="140">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="✅" FontSize="30" HorizontalOptions="Center"/>
+                        <Label Text="Onaylandı" FontSize="12" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="7" FontSize="16" HorizontalOptions="Center" TextColor="#000"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="15" WidthRequest="140">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="❌" FontSize="30" HorizontalOptions="Center"/>
+                        <Label Text="Reddedildi" FontSize="12" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="3" FontSize="16" HorizontalOptions="Center" TextColor="#000"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="15" WidthRequest="140">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="📈" FontSize="30" HorizontalOptions="Center"/>
+                        <Label Text="Tamamlandı" FontSize="12" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="2" FontSize="16" HorizontalOptions="Center" TextColor="#000"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <ScrollView Grid.Row="2">
+            <Grid Padding="20" RowSpacing="15" ColumnSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="20">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="ReturnRequest" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="📝" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="İade Talep Oluştur" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="20">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="QualityInspection" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="🔍" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Kalite Kontrol" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="20">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="ReturnProcessing" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="♻️" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="İşleme / Entegrasyon" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="20">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="FinancialAdjustments" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="💰" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Finansal Ayarlamalar" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="20">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="ReturnAnalytics" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="📊" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Analitik" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="20">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="VendorCommunication" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="💬" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Tedarikçi İletişimi" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+
+        <Grid Grid.Row="3" Padding="7" BackgroundColor="#F5F5F5">
+            <Label x:Name="MarqueeLabel"
+                   Text="⏳ Bekleyen: 8 | 🔍 İnceleniyor: 5 | ✅ Onaylandı: 7 | ❌ Reddedildi: 3 | 📈 Tamamlandı: 2"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   TextColor="#333"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </Grid>
+</ContentPage>

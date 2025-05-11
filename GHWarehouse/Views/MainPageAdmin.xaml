@@ -1,0 +1,524 @@
+<ContentPage
+    x:Class="GHWarehouseApp.Views.MainPageAdmin"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Shell.NavBarIsVisible="False"
+    Title="Dashboard">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#D4F4FF" />
+            <GradientStop Offset="1.0" Color="#8f94fb" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!--<StackLayout
+            Grid.Row="0"
+            BackgroundColor="Transparent"
+            Padding="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="ANASAYFA"
+                TextColor="#333" />
+        </StackLayout>-->
+        <ScrollView Grid.Row="1">
+            <Grid RowDefinitions="Auto,*,Auto">
+
+
+                <VerticalStackLayout
+                    BackgroundColor="Transparent"
+                    Padding="20"
+                    Spacing="20">
+
+                    <!--<Label
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="Dashboard"
+                        TextColor="Black" />-->
+
+                    <toolkit:Expander x:Name="MyExpander">
+                        <toolkit:Expander.Header>
+                            <Border
+                                BackgroundColor="Transparent"
+                                Stroke="#80FFFFFF"
+                                StrokeThickness="2">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <Grid Padding="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        FontSize="24"
+                                        Text="Dashboard"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                    <Image
+                                        Grid.Column="1"
+                                        HeightRequest="20"
+                                        HorizontalOptions="End"
+                                        Source="https://img.icons8.com/fluency-systems-filled/48/000000/expand-arrow.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="20">
+                                        <Image.Triggers>
+                                            <DataTrigger
+                                                Value="True"
+                                                Binding="{Binding IsExpanded, Source={x:Reference MyExpander}}"
+                                                TargetType="Image">
+                                                <Setter Property="Rotation" Value="180" />
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </Grid>
+                            </Border>
+                        </toolkit:Expander.Header>
+                        <toolkit:Expander.Content>
+                            <Grid
+                                Margin="10,10,10,10"
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="15"
+                                RowDefinitions="135,135"
+                                RowSpacing="15">
+
+                                <Border
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent"
+                                    Stroke="#80FFFFFF"
+                                    StrokeThickness="2">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10" />
+                                    </Border.StrokeShape>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="CriticalStock" Tapped="OnBorderTapped" />
+                                    </Border.GestureRecognizers>
+                                    <VerticalStackLayout
+                                        HorizontalOptions="FillAndExpand"
+                                        Padding="10"
+                                        Spacing="10"
+                                        VerticalOptions="FillAndExpand">
+                                        <Image
+                                            HeightRequest="47"
+                                            HorizontalOptions="Center"
+                                            Source="https://img.icons8.com/fluency/96/000000/high-priority.png"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            FontSize="14"
+                                            HorizontalOptions="Center"
+                                            Text="Kritik Stok"
+                                            TextColor="Black" />
+                                        <Label
+                                            FontSize="13"
+                                            HorizontalOptions="Center"
+                                            Text="5 Ürün"
+                                            TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <Border
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent"
+                                    Stroke="#80FFFFFF"
+                                    StrokeThickness="2">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10" />
+                                    </Border.StrokeShape>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="PendingOrders" Tapped="OnBorderTapped" />
+                                    </Border.GestureRecognizers>
+                                    <VerticalStackLayout
+                                        HorizontalOptions="FillAndExpand"
+                                        Padding="10"
+                                        Spacing="10"
+                                        VerticalOptions="FillAndExpand">
+                                        <Image
+                                            HeightRequest="55"
+                                            HorizontalOptions="Center"
+                                            Source="https://img.icons8.com/fluency/96/000000/time.png"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            FontSize="14"
+                                            HorizontalOptions="Center"
+                                            Text="Bekleyen Sipariş"
+                                            TextColor="Black" />
+                                        <Label
+                                            FontSize="13"
+                                            HorizontalOptions="Center"
+                                            Text="10 Sipariş"
+                                            TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <Border
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent"
+                                    Stroke="#80FFFFFF"
+                                    StrokeThickness="2">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10" />
+                                    </Border.StrokeShape>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="WarehouseReports" Tapped="OnBorderTapped" />
+                                    </Border.GestureRecognizers>
+                                    <VerticalStackLayout
+                                        HorizontalOptions="FillAndExpand"
+                                        Padding="10"
+                                        Spacing="10"
+                                        VerticalOptions="FillAndExpand">
+                                        <Image
+                                            HeightRequest="55"
+                                            HorizontalOptions="Center"
+                                            Source="https://img.icons8.com/fluency/96/000000/report-file.png"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            FontSize="14"
+                                            HorizontalOptions="Center"
+                                            Text="Depo Raporları"
+                                            TextColor="Black" />
+                                        <Label
+                                            FontSize="13"
+                                            HorizontalOptions="Center"
+                                            Text="3 Rapor"
+                                            TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <Border
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent"
+                                    Stroke="#80FFFFFF"
+                                    StrokeThickness="2">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10" />
+                                    </Border.StrokeShape>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="DailyPerformance" Tapped="OnBorderTapped" />
+                                    </Border.GestureRecognizers>
+                                    <VerticalStackLayout
+                                        HorizontalOptions="FillAndExpand"
+                                        Padding="10"
+                                        Spacing="10"
+                                        VerticalOptions="FillAndExpand">
+                                        <Image
+                                            HeightRequest="55"
+                                            HorizontalOptions="Center"
+                                            Source="https://img.icons8.com/fluency/96/000000/combo-chart.png"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            FontSize="14"
+                                            HorizontalOptions="Center"
+                                            Text="Günlük Performans"
+                                            TextColor="Black" />
+                                        <Label
+                                            FontSize="13"
+                                            HorizontalOptions="Center"
+                                            Text="95% Verimlilik"
+                                            TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+                        </toolkit:Expander.Content>
+                    </toolkit:Expander>
+                    <Label
+                        FontSize="26"
+                        HorizontalOptions="Center"
+                        Text="Modüller"
+                        TextColor="Black" />
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="15"
+                        RowDefinitions="150,150,150"
+                        RowSpacing="15">
+
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            Stroke="#80FFFFFF"
+                            StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="Orders" Tapped="OnBorderTapped" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Padding="20"
+                                Spacing="10"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    HeightRequest="55"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="https://img.icons8.com/fluency/96/000000/order-history.png"
+                                    VerticalOptions="FillAndExpand" />
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    Text="Siparişler"
+                                    TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            Stroke="#80FFFFFF"
+                            StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="GoodsReceipt" Tapped="OnBorderTapped" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Padding="20"
+                                Spacing="10"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    HeightRequest="55"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="https://cdn-icons-png.flaticon.com/512/17241/17241100.png"
+                                    VerticalOptions="FillAndExpand" />
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    Text="Mal Kabul"
+                                    TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            Stroke="#80FFFFFF"
+                            StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="Returns" Tapped="OnBorderTapped" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Padding="20"
+                                Spacing="10"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    HeightRequest="55"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="https://img.icons8.com/fluency/96/000000/return.png"
+                                    VerticalOptions="FillAndExpand" />
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    Text="İadeler"
+                                    TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            Stroke="#80FFFFFF"
+                            StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="ShippingOperations" Tapped="OnBorderTapped" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Padding="20"
+                                Spacing="10"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    HeightRequest="55"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="https://cdn-icons-png.flaticon.com/512/17468/17468609.png"
+                                    VerticalOptions="FillAndExpand" />
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    Text="Sevk İşlemleri"
+                                    TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            Stroke="#80FFFFFF"
+                            StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="CycleCountPlanning" Tapped="OnBorderTapped" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Padding="20"
+                                Spacing="10"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    HeightRequest="55"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="https://img.icons8.com/fluency/96/000000/report-file.png"
+                                    VerticalOptions="FillAndExpand" />
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    Text="Sayım Planlama"
+                                    TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            Stroke="#80FFFFFF"
+                            StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="StockOperations" Tapped="OnBorderTapped" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Padding="20"
+                                Spacing="10"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    HeightRequest="55"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="https://cdn-icons-png.flaticon.com/512/10112/10112442.png"
+                                    VerticalOptions="FillAndExpand" />
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    Text="Stok İşlemleri"
+                                    TextColor="Black" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+        <Grid Grid.Row="2" Padding="2">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0.0" Color="#D4F4FF" />
+                    <GradientStop Offset="1.0" Color="#8f94fb" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <!-- Panel benzeri geliştirilmiş tasarım -->
+            <Frame
+                Margin="10"
+                BackgroundColor="Transparent"
+                CornerRadius="12"
+                HasShadow="True"
+                IsClippedToBounds="True"
+                Padding="0">
+
+                <!-- İçerik: Grid + LinearGradientBrush -->
+                <Grid Padding="5">
+
+
+                    <!-- Solda kullanıcı bilgisi, sağda ayarlar/çıkış -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- SOL KISIM: Profil + Kullanıcı Adı + Sunucu Bilgisi -->
+                    <StackLayout
+                        HorizontalOptions="Start"
+                        Orientation="Vertical"
+                        Spacing="5"
+                        VerticalOptions="Center">
+
+                        <!-- Profil ve Kullanıcı Adı yan yana -->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <ImageButton
+                                Margin="0,1,0,1"
+                                BackgroundColor="Transparent"
+                                Clicked="SettingsButton_Clicked"
+                                CornerRadius="10"
+                                HeightRequest="40"
+                                Source="https://cdn-icons-png.flaticon.com/512/5908/5908938.png"
+                                WidthRequest="40" />
+
+                            <StackLayout Orientation="Vertical" Spacing="2">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    Text="Kullanıcı Adı"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+
+                                <Label
+                                    FontSize="12"
+                                    Text="Sunucu: 192.168.1.1"
+                                    TextColor="#555"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <!-- Eğer profil kartına tıklama eklemek isterseniz:
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Profile_Tapped" />
+            </StackLayout.GestureRecognizers>
+            -->
+                    </StackLayout>
+
+                    <!-- SAĞ KISIM: Ayarlar ve Çıkış Butonları -->
+                    <StackLayout
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal"
+                        Spacing="15"
+                        VerticalOptions="Center">
+
+                        <ImageButton
+                            Margin="0,1,0,1"
+                            BackgroundColor="Transparent"
+                            Clicked="SettingsButton_Clicked"
+                            CornerRadius="10"
+                            HeightRequest="30"
+                            Source="https://cdn-icons-png.flaticon.com/512/5421/5421574.png"
+                            WidthRequest="30" />
+
+                        <ImageButton
+                            Margin="0,1,2,1"
+                            BackgroundColor="Transparent"
+                            Clicked="LogoutButton_Clicked"
+                            CornerRadius="10"
+                            HeightRequest="30"
+                            Source="https://cdn-icons-png.flaticon.com/512/12200/12200195.png"
+                            WidthRequest="30" />
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+        </Grid>
+
+    </Grid>
+</ContentPage>

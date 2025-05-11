@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="GHWarehouseApp.Controls.OperationCard"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="This">
+    <Frame BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+        <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+           
+            <Label Text="{Binding Icon, Source={x:Reference This}}" 
+                   FontSize="36" 
+                   HorizontalOptions="Center"/>
+          
+            <Label Text="{Binding Title, Source={x:Reference This}}" 
+                   FontSize="16" 
+                   HorizontalOptions="Center" 
+                   TextColor="#333"/>
+            
+            <Label Text="{Binding Count, Source={x:Reference This}}" 
+                   FontSize="18" 
+                   HorizontalOptions="Center" 
+                   TextColor="#000"/>
+       
+            <ProgressBar Progress="{Binding Progress, Source={x:Reference This}}" 
+                         WidthRequest="100" 
+                         HeightRequest="10" />
+        </VerticalStackLayout>
+    </Frame>
+</ContentView>

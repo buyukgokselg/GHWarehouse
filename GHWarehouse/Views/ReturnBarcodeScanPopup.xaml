@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+    x:Class="GHWarehouseApp.Views.ReturnBarcodeScanPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GHWarehouseApp.Converters"
+    Title="Barkod Onay" 
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#80000000">
+
+    <Grid VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
+        <Frame BackgroundColor="White" CornerRadius="10" Padding="20">
+            <StackLayout Spacing="15">
+                <Label Text="Barkod Okutma ve Adet Onay" 
+                       FontSize="20" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center"/>
+
+                <Entry x:Name="BarcodeEntry" 
+                       Placeholder="Barkod Giriniz veya Taratınız" />
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                    <Button Text="–" Clicked="OnDecrementClicked" WidthRequest="40" HeightRequest="40"/>
+                    <Entry x:Name="QuantityPopupEntry" 
+                           Text="1" 
+                           Keyboard="Numeric" 
+                           WidthRequest="60" 
+                           HorizontalTextAlignment="Center"/>
+                    <Button Text="+" Clicked="OnIncrementClicked" WidthRequest="40" HeightRequest="40"/>
+                </StackLayout>
+
+                <Label Text="Taratılan Ürünler:" FontAttributes="Bold"/>
+                <CollectionView x:Name="ProductCardList" ItemsSource="{Binding ScannedProducts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10" Padding="10" HasShadow="True">
+                                <Frame.BackgroundColor>
+                                    <MultiBinding Converter="{StaticResource CardColorMultiConverter}">
+                                        <Binding Path="ScannedQuantity"/>
+                                        <Binding Path="RequiredQuantity"/>
+                                    </MultiBinding>
+                                </Frame.BackgroundColor>
+                                <StackLayout>
+                                    <Label Text="{Binding ProductName}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding ScannedQuantity, StringFormat='Okutulan: {0} Adet'}"/>
+                                    <Label Text="{Binding RequiredQuantity, StringFormat='Gerekli: {0} Adet'}"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+                    <Button Text="İptal" Clicked="OnCancelClicked" BackgroundColor="Gray" TextColor="White"/>
+                    <Button Text="Onayla" Clicked="OnConfirmClicked" BackgroundColor="#8f94fb" TextColor="White"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

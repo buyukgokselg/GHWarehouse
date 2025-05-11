@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    x:Class="GHWarehouseApp.Views.ReturnRequestPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="İade Talep Oluştur"
+    Shell.NavBarIsVisible="True"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <Label Text="İade Talep Oluştur" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   TextColor="#333"/>
+
+            <Label Text="İade Alınacak Sipariş:" FontAttributes="Bold" TextColor="#333"/>
+            <Picker x:Name="OrderPicker" 
+                    Title="Sipariş Seçiniz"
+                    BackgroundColor="#F5F5F5"
+                    TextColor="#333"
+                    FontSize="Medium"/>
+            <Button Text="Barkod ile Sipariş Seç"
+                    Clicked="OnBarcodeScanOrderClicked"
+                    BackgroundColor="#8f94fb"
+                    TextColor="White"
+                    CornerRadius="10"/>
+
+            <Frame x:Name="OrderCardFrame"
+                   IsVisible="False"
+                   BorderColor="#8f94fb"
+                   CornerRadius="10"
+                   HasShadow="True"
+                   Padding="15"
+                   BackgroundColor="White">
+                <StackLayout>
+                    <Label Text="Sipariş Kartı" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="#8f94fb" 
+                           HorizontalOptions="Center"/>
+                    <Grid ColumnSpacing="10" RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" 
+                               Text="Sipariş No:" 
+                               FontAttributes="Bold" 
+                               TextColor="#333"/>
+                        <Label Grid.Row="0" Grid.Column="1" 
+                               Text="ORD123456" 
+                               TextColor="#555"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" 
+                               Text="Sipariş Tarihi:" 
+                               FontAttributes="Bold" 
+                               TextColor="#333"/>
+                        <Label Grid.Row="1" Grid.Column="1" 
+                               Text="12/04/2023" 
+                               TextColor="#555"/>
+
+                        <Label Grid.Row="2" Grid.Column="0" 
+                               Text="Fatura Tarihi:" 
+                               FontAttributes="Bold" 
+                               TextColor="#333"/>
+                        <Label Grid.Row="2" Grid.Column="1" 
+                               Text="13/04/2023" 
+                               TextColor="#555"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" 
+                               Text="Ürün:" 
+                               FontAttributes="Bold" 
+                               TextColor="#333"/>
+                        <Label Grid.Row="3" Grid.Column="1" 
+                               Text="Ürün Adı, Renk, Model" 
+                               TextColor="#555"/>
+                    </Grid>
+                    <Label Text="Adet: 5" 
+                           FontAttributes="Bold" 
+                           TextColor="#333" 
+                           HorizontalOptions="End"/>
+                </StackLayout>
+            </Frame>
+
+            <Label Text="İade Alınacak Raf:" FontAttributes="Bold" TextColor="#333"/>
+            <Picker x:Name="ShelfPicker" 
+                    Title="Raf Seçiniz"
+                    BackgroundColor="#F5F5F5"
+                    TextColor="#333"
+                    SelectedIndexChanged="OnShelfPickerSelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>Raf A</x:String>
+                    <x:String>Raf B</x:String>
+                    <x:String>Raf C</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Depo:" FontAttributes="Bold" TextColor="#333"/>
+            <Label x:Name="WarehouseLabel" 
+                   Text="--" 
+                   FontAttributes="Bold" 
+                   TextColor="#333"/>
+
+            <Label Text="İade Adedi:" FontAttributes="Bold" TextColor="#333"/>
+            <Entry x:Name="ReturnQuantityEntry" 
+                   Placeholder="Adet" 
+                   Keyboard="Numeric"
+                   BackgroundColor="#F5F5F5"
+                   TextColor="#333"/>
+
+            <Button Text="Barkod Onayla" 
+                    Clicked="OnOpenBarcodePopupClicked"
+                    BackgroundColor="#8f94fb"
+                    TextColor="White"
+                    CornerRadius="10"/>
+
+            <Button Text="Talebi Gönder" 
+                    Clicked="OnSubmitReturnRequestClicked"
+                    BackgroundColor="#8f94fb"
+                    TextColor="White"
+                    CornerRadius="10"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

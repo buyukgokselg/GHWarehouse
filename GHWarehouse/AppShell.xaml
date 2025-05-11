@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="GHWarehouse.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:GHWarehouseApp.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <LinearGradientBrush x:Key="TitleViewGradient" StartPoint="0,50" EndPoint="1,0">
+                <GradientStop Offset="0.0" Color="#D4F4FF" />
+                <GradientStop Offset="1.0" Color="#9090F5" />
+            </LinearGradientBrush>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+
+    <!--<Shell.TitleView>
+        <Grid
+            Background="{StaticResource TitleViewGradient}"
+            ColumnSpacing="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+
+            <StackLayout
+                Grid.Column="0"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+
+                <ImageButton
+                    Aspect="AspectFill"
+                    BackgroundColor="Transparent"
+                    Clicked="ProfileSettingsButton_Clicked"
+                    HeightRequest="40"
+                    HorizontalOptions="Start"
+                    Source="https://cdn-icons-png.flaticon.com/512/7542/7542190.png"
+                    VerticalOptions="Center"
+                    WidthRequest="40" />
+                <Label
+                    x:Name="UserLongNameLabel"
+                    FontSize="8"
+                    Text="Ataberk BÜYÜKGÖKSEL"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+
+            <StackLayout
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                Spacing="10"
+                VerticalOptions="CenterAndExpand">
+                <Label
+                    x:Name="PageTitleLabel"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    TextColor="White" />
+            </StackLayout>
+
+            <StackLayout
+                Grid.Column="2"
+                HorizontalOptions="End"
+                Orientation="Horizontal"
+                Spacing="10"
+                VerticalOptions="Center">
+
+                <Button
+                    Margin="0,1,0,1"
+                    BackgroundColor="#607D8B"
+                    Clicked="SettingsButton_Clicked"
+                    CornerRadius="10"
+                    FontSize="10"
+       
+                    HeightRequest="35"
+                    Text="Ayarlar"
+                    TextColor="White" />
+
+                <Button
+                    Margin="0,1,2,1"
+                    BackgroundColor="Red"
+                    Clicked="LogoutButton_Clicked"
+                    CornerRadius="10"
+                    FontSize="10"
+                    
+                    HeightRequest="35"
+                    Text="Çıkış"
+                    TextColor="White" />
+            </StackLayout>
+        </Grid>
+    </Shell.TitleView>-->
+
+    <ShellContent Route="mainpageadmin"
+                  ContentTemplate="{DataTemplate views:MainPageAdmin}"
+                  Title="Anasayfa" />
+</Shell>

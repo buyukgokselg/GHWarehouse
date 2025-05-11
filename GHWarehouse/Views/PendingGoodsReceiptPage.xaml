@@ -1,0 +1,115 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GHWarehouseApp.Views.PendingGoodsReceiptPage"
+             Title="Mal Kabul İşlemleri"
+             BackgroundColor="#F0F4F8">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#2196F3"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+            <Style x:Key="CardFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Margin" Value="5,5"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            <Style x:Key="HeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="#333"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+
+            <Frame CornerRadius="10" BackgroundColor="White" Padding="15">
+                <StackLayout Spacing="10">
+                    <Label Text="Emir Filtreleme" Style="{StaticResource HeaderLabelStyle}"/>
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                        <Entry Grid.Row="0" Grid.Column="0" Placeholder="Belge No" Text="{Binding FilterDocumentNumber}" />
+                        <Entry Grid.Row="0" Grid.Column="1" Placeholder="Tedarikçi" Text="{Binding FilterSupplier}" />
+                        <Entry Grid.Row="0" Grid.Column="2" Placeholder="Sipariş No" Text="{Binding FilterOrderNumber}" />
+                        <DatePicker Grid.Row="1" Grid.Column="0" Date="{Binding FilterStartDate}" Format="dd.MM.yyyy" />
+                        <DatePicker Grid.Row="1" Grid.Column="1" Date="{Binding FilterEndDate}" Format="dd.MM.yyyy" />
+                        <Button Grid.Row="1" Grid.Column="2" Text="Filtrele" Command="{Binding FilterCommand}" Style="{StaticResource PrimaryButtonStyle}" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BackgroundColor="White" Padding="15">
+                <StackLayout>
+                    <Label Text="Bekleyen Mal Kabul Emirleri" Style="{StaticResource HeaderLabelStyle}" Margin="0,0,0,10"/>
+                    <CollectionView ItemsSource="{Binding Orders}" SelectionMode="Multiple"
+                          SelectedItems="{Binding SelectedOrders}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Style="{StaticResource CardFrameStyle}">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" RowSpacing="5">
+                                        <Image Source="box_icon.png" WidthRequest="40" HeightRequest="40" VerticalOptions="Center"/>
+                                        <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                            <Label Text="{Binding DocumentNumber}" FontAttributes="Bold" FontSize="15" TextColor="#333"/>
+                                            <Label Text="{Binding Supplier}" FontSize="13" TextColor="#666"/>
+                                            <Label Text="{Binding DocumentDate, StringFormat='Tarih: {0:dd.MM.yyyy}'}" FontSize="12" TextColor="#999"/>
+                                            <Label Text="{Binding OrderNumber, StringFormat='Sipariş No: {0}'}" FontSize="12" TextColor="#999"/>
+                                        </StackLayout>
+                                        <Label Grid.Column="2" Text="{Binding Warehouse}" VerticalOptions="Center" TextColor="#555"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Seçili Emirleri Kabul Et" Command="{Binding AcceptMultipleOrdersCommand}" Style="{StaticResource PrimaryButtonStyle}" Margin="0,10,0,0"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BackgroundColor="White" Padding="15" IsVisible="{Binding IsDetailVisible}">
+                <StackLayout Spacing="10">
+                    <Label Text="Emir Detayları" Style="{StaticResource HeaderLabelStyle}"/>
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Text="Belge No:" VerticalOptions="Center"/>
+                        <Label Text="{Binding SelectedOrder.DocumentNumber}" VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Text="Tedarikçi:" VerticalOptions="Center"/>
+                        <Label Text="{Binding SelectedOrder.Supplier}" VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Text="Tarih:" VerticalOptions="Center"/>
+                        <Label Text="{Binding SelectedOrder.DocumentDate, StringFormat='{0:dd.MM.yyyy}'}" VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Text="Depo:" VerticalOptions="Center"/>
+                        <Label Text="{Binding SelectedOrder.Warehouse}" VerticalOptions="Center"/>
+                    </Grid>
+
+                    <Label Text="Ürünler" FontAttributes="Bold" TextColor="#333" Margin="0,10,0,0"/>
+                    <CollectionView ItemsSource="{Binding SelectedOrder.OrderItems}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Style="{StaticResource CardFrameStyle}">
+                                    <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="10">
+                                        <Label Text="{Binding ProductCode}" FontSize="13" TextColor="#333"/>
+                                        <Label Text="{Binding ProductName}" FontSize="13" TextColor="#333"/>
+                                        <Grid ColumnDefinitions="*,*">
+                                            <Label Text="{Binding ExpectedQuantity, StringFormat='Beklenen: {0}'}" FontSize="12" TextColor="#555"/>
+                                            <Entry Text="{Binding AcceptedQuantity}" Placeholder="Kabul Miktarı" Keyboard="Numeric" FontSize="12" HorizontalTextAlignment="End"/>
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Emiri Onayla" Command="{Binding AcceptSingleOrderCommand}" Style="{StaticResource PrimaryButtonStyle}" Margin="0,10,0,0"/>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

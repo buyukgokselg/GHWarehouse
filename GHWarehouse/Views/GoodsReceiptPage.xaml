@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    x:Class="GHWarehouseApp.Views.GoodsReceiptPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:GHWarehouse.Behaviors"
+    BackgroundColor="#F5F5F5"
+    Title="Mal Kabul"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Başlık -->
+        <StackLayout Grid.Row="0" Padding="20" BackgroundColor="Transparent">
+            <Label Text="Mal Kabul İşlemleri" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   TextColor="#333"/>
+        </StackLayout>
+
+        <!-- İşlem Seçenekleri -->
+        <ScrollView Grid.Row="1">
+            <Grid Padding="20" RowSpacing="15" ColumnSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Bekleyen Mal Kabul -->
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="PendingGoodsReceipt" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="📥" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Bekleyen Mal Kabul" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="5" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- İrsaliye Onay -->
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="IrsaliyeOnay" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="📝" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="İrsaliye Onay" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="3" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Tamamlanan Mal Kabul -->
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="TamamlananMalKabul" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="✅" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Tamamlanan Mal Kabul" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="10" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Hatalı Ürünler -->
+                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="HatalıUrunler" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="⚠️" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Hatalı Ürünler" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="1" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Acil Mal Kabul -->
+                <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="AcilMalKabul" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="🚨" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Acil Mal Kabul" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="0" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Kısmi Mal Kabul -->
+                <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="KismiMalKabul" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="🔄" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Kısmi Mal Kabul" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="2" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </Grid>
+        </ScrollView>
+
+        <!-- Alt Bilgi Marquee -->
+        <Grid Grid.Row="2" Padding="7">
+            <Label x:Name="MarqueeLabel"
+                   Text="📥 Bekleyen: 5 | 📝 İrsaliye: 3 | ✅ Tamamlanan: 10 | ⚠️ Hatalı: 1 | 🚨 Acil: 0 | 🔄 Kısmi: 2"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   TextColor="#333"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </Grid>
+</ContentPage>

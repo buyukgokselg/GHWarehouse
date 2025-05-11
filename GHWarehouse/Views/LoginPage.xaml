@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GHWarehouseApp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="V1.0">
+
+
+    <ContentPage.Background>
+
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+            <GradientStop Offset="0.0" Color="#D4F4FF" />
+            <GradientStop Offset="1.0" Color="#8f94fb" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+
+    <!-- İçeriğin taşınabilir olması için ScrollView -->
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="20"
+            VerticalOptions="CenterAndExpand">
+
+            <!-- Ana kart görünümü -->
+            <Frame
+                BackgroundColor="White"
+                CornerRadius="20"
+                HasShadow="True"
+                Padding="30">
+                <VerticalStackLayout Spacing="25">
+
+                    <!-- Üstteki logo (WMS ikonu) -->
+                    <Image
+                        HeightRequest="120"
+                        HorizontalOptions="Center"
+                        Source="https://cdn-icons-png.flaticon.com/512/10256/10256512.png"
+                        WidthRequest="350" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="Center"
+                        Text="Kullanıcı Giriş"
+                        TextColor="#333" />
+
+                    <!-- Başlık ve alt metin -->
+
+
+                    <Label
+                        FontSize="11"
+                        HorizontalOptions="Center"
+                        Text="Lütfen giriş yapmak için kullanıcı bilgilerinizi giriniz"
+                        TextColor="#777" />
+
+                    <!-- Kullanıcı Adı -->
+                    <Frame
+                        BackgroundColor="#F5F5F5"
+                        CornerRadius="10"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="10">
+                        <Grid ColumnDefinitions="Auto, *">
+                            <Image
+                                Margin="0,0,10,0"
+                                HeightRequest="20"
+                                Source="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                                VerticalOptions="Center"
+                                WidthRequest="20" />
+                            <Entry
+                                x:Name="UsernameEntry"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="14"
+                                Placeholder="Kullanıcı Adı"
+                                PlaceholderColor="#999"
+                                TextColor="#333" />
+                        </Grid>
+                    </Frame>
+
+                    <!-- Şifre Alanı -->
+                    <Frame
+                        BackgroundColor="#F5F5F5"
+                        CornerRadius="10"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="10">
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Image
+                                Margin="0,0,10,0"
+                                HeightRequest="20"
+                                Source="https://cdn-icons-png.flaticon.com/512/3064/3064155.png"
+                                VerticalOptions="Center"
+                                WidthRequest="20" />
+                            <Entry
+                                x:Name="PasswordEntry"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="14"
+                                IsPassword="True"
+                                Placeholder="Şifre"
+                                PlaceholderColor="#999"
+                                TextColor="#333" />
+
+                            <Frame
+                                x:Name="PasswordToggleFrame"
+                                Grid.Column="2"
+                                Margin="5,0,0,0"
+                                BackgroundColor="Transparent"
+                                CornerRadius="5"
+                                HeightRequest="32"
+                                WidthRequest="32">
+                                <Image
+                                    HeightRequest="32"
+                                    HorizontalOptions="Center"
+                                    Source="https://cdn-icons-png.flaticon.com/512/11502/11502541.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="32" />
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TogglePasswordVisibility" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Beni Hatırla (Switch) -->
+                    <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
+                        <Label
+                            FontSize="14"
+                            Text="Beni Hatırla"
+                            TextColor="#333"
+                            VerticalOptions="Center" />
+                        <Switch
+                            x:Name="RememberMeSwitch"
+                            IsToggled="True"
+                            Visual="Material" />
+                    </HorizontalStackLayout>
+
+                    <!-- Giriş Butonu -->
+                    <Button
+                        BackgroundColor="#007AFF"
+                        Clicked="OnLoginClicked"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="FillAndExpand"
+                        Text="GİRİŞ"
+                        TextColor="White" />
+
+                    <!-- Şifremi Unuttum -->
+                    <Label
+                        FontSize="13"
+                        HorizontalOptions="Center"
+                        Text="Şifremi Unuttum"
+                        TextColor="#007AFF">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnForgotPassword" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

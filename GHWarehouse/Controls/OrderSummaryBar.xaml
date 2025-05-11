@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="GHWarehouseApp.Controls.OrderSummaryBar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid BackgroundColor="#8f94fb">
+        <Label x:Name="MarqueeLabel"
+               Text="⏳ Bekleyen: 5   |   📦 Hazırlanan: 3   |   🚚 Kargodakiler: 2   |   ✅ Tamamlanan: 10   |   🔄 İade: 1   |   🚨 Acil: 0"
+               FontAttributes="Bold"
+               FontSize="14"
+               TextColor="White"
+               VerticalOptions="Center"
+               HorizontalOptions="Start" />
+    </Grid>
+</ContentView>

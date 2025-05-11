@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    x:Class="GHWarehouseApp.Views.StockOperationsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:GHWarehouse.Behaviors"
+    BackgroundColor="#F5F5F5"
+    Title="Siparişler"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <StackLayout Grid.Row="0" Padding="20" BackgroundColor="Transparent">
+            <Label Text="Siparişler" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   TextColor="#333"/>
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+            <Grid Padding="20" RowSpacing="15" ColumnSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Bekleyen Siparişler -->
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="BekleyenSiparisler" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="⏳" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Bekleyen Siparişler" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="5" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Hazırlanan Siparişler -->
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="HazirlananSiparisler" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="📦" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Hazırlanan Siparişler" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="3" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Kargodakiler -->
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="KargodakiSiparisler" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="🚚" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Kargodakiler" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="2" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Tamamlananlar -->
+                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="TamamlananSiparisler" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="✅" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Tamamlananlar" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="10" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- İade Sürecinde -->
+                <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="IadeSurecinde" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="🔄" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="İade Sürecinde" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="1" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Acil Siparişler -->
+                <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="White" CornerRadius="15" HasShadow="True" Padding="15">
+                    <Frame.Behaviors>
+                        <behaviors:FrameTapAnimationBehavior/>
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="AcilSiparisler" Tapped="OnBorderTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="🚨" FontSize="40" HorizontalOptions="Center"/>
+                        <Label Text="Acil Siparişler" FontSize="14" HorizontalOptions="Center" TextColor="#333"/>
+                        <Label Text="0" FontSize="14" HorizontalOptions="Center" TextColor="#777"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+
+        <Grid Grid.Row="2" Padding="7">
+            <Label x:Name="MarqueeLabel"
+                   Text="⏳ Bekleyen: 5 | 📦 Hazırlanan: 3 | 🚚 Kargo: 2 | ✅ Tamamlanan: 10 | 🔄 İade: 1 | 🚨 Acil: 0"
+                   FontAttributes="Bold"
+                   FontSize="14"
+                   TextColor="#333"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </Grid>
+</ContentPage>
